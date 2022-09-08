@@ -1,0 +1,671 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/): mongo
+mongo
+Current Mongosh Log ID: 63197a1ae42713580c40bf7b
+Connecting to:          mongodb://127.0.0.1:27017/mongo?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.5.4
+Using MongoDB:          6.0.1
+Using Mongosh:          1.5.4
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2022-09-08T10:27:29.410+05:30: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+mongo> show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   72.00 KiB
+mongo> use web21
+switched to db web21
+web21> db
+web21
+web21> db.createCollection("students")
+{ ok: 1 }
+web21> show collections
+students
+web21> db.students.find()
+
+web21> db.students.insertOne({name:"Sayan"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63197ab48e070bbe5098994b")
+}
+web21> db.students.find()
+[ { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' } ]
+web21> show collections
+students
+web21> db.users.insertOne({name:
+...
+...
+web21> db.user.insertOne({name:"Sayan2"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63197afc8e070bbe5098994c")
+}
+web21> db.users.find()
+
+web21> db.user.find()
+[ { _id: ObjectId("63197afc8e070bbe5098994c"), name: 'Sayan2' } ]
+web21> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    72.00 KiB
+web21    80.00 KiB
+web21> db
+web21
+web21> show collections
+students
+user
+web21> db.user.help()
+
+  Collection Class:
+
+    aggregate                                  Calculates aggregate values for the data in a collection or a view.
+    bulkWrite                                  Performs multiple write operations with controls for order of execution.
+    count                                      Returns the count of documents that would match a find() query for the collection or view.
+    countDocuments                             Returns the count of documents that match the query for a collection or view.
+    deleteMany                                 Removes all documents that match the filter from a collection.
+    deleteOne                                  Removes a single document from a collection.
+    distinct                                   Finds the distinct values for a specified field across a single collection or view and returns the results in an array.
+    estimatedDocumentCount                     Returns the count of all documents in a collection or view.
+    find                                       Selects documents in a collection or view.
+    findAndModify                              Modifies and returns a single document.
+    findOne                                    Selects documents in a collection or view.
+    renameCollection                           Renames a collection.
+    findOneAndDelete                           Deletes a single document based on the filter and sort criteria, returning the deleted document.
+    findOneAndReplace                          Modifies and replaces a single document based on the filter and sort criteria.
+    findOneAndUpdate                           Updates a single document based on the filter and sort criteria.
+    insert                                     Inserts a document or documents into a collection.
+    insertMany                                 Inserts multiple documents into a collection.
+    insertOne                                  Inserts a document into a collection.    isCapped                                   Checks if a collection is capped
+    remove                                     Removes documents from a collection.
+    replaceOne                                 Replaces a single document within the collection based on the filter.
+    update                                     Modifies an existing document or documents in a collection.
+    updateMany                                 Updates all documents that match the specified filter for a collection.
+    updateOne                                  Updates a single document within the collection based on the filter.
+    compactStructuredEncryptionData            Compacts structured encryption data
+    convertToCapped                            calls {convertToCapped:'coll', size:maxBytes}} command
+    createIndexes                              Creates one or more indexes on a collection
+    createIndex                                Creates one index on a collection
+    ensureIndex                                Creates one index on a collection
+    getIndexes                                 Returns an array that holds a list of documents that identify and describe the existing indexes on the collection.
+    getIndexSpecs                              Alias for getIndexes. Returns an array that holds a list of documents that identify and describe the existing indexes on the collection.
+    getIndices                                 Alias for getIndexes. Returns an array that holds a list of documents that identify and describe the existing indexes on the collection.
+    getIndexKeys                               Return an array of key patterns for indexes defined on collection
+    dropIndexes                                Drops the specified index or indexes (except the index on the _id field) from a collection.
+    dropIndex                                  Drops or removes the specified index from a collection.
+    totalIndexSize                             Reports the total size used by the indexes on a collection.
+    reIndex                                    Rebuilds all existing indexes on a collection.
+    getDB                                      Get current database.
+    getMongo                                   Returns the Mongo object.
+    dataSize                                   This method provides a wrapper around the size output of the collStats (i.e. db.collection.stats()) command.
+    storageSize                                The total amount of storage allocated to this collection for document storage.
+    totalSize                                  The total size in bytes of the data in the collection plus the size of every index on the collection.
+    drop                                       Removes a collection or view from the database.
+    exists                                     Returns collection infos if the collection exists or null otherwise.
+    getFullName                                Returns the name of the collection prefixed with the database name.
+    getName                                    Returns the name of the collection.
+    runCommand                                 Runs a db command with the given name where the first param is the collection name.
+    explain                                    Returns information on the query plan.
+    stats                                      Returns statistics about the collection.
+    latencyStats                               returns the $latencyStats aggregation for the collection. Takes an options document with an optional boolean 'histograms' field.
+    initializeOrderedBulkOp                    Initializes an ordered bulk command. Returns an instance of Bulk
+    initializeUnorderedBulkOp                  Initializes an unordered bulk command. Returns an instance of Bulk
+    getPlanCache                               Returns an interface to access the query plan cache for a collection. The interface provides methods to view and clear the query plan cache.
+    mapReduce                                  Calls the mapReduce command
+    validate                                   Calls the validate command. Default full value is false
+    getShardVersion                            Calls the getShardVersion command
+    getShardDistribution                       Prints the data distribution statistics for a sharded collection.
+    watch                                      Opens a change stream cursor on the collection
+    hideIndex                                  Hides an existing index from the query planner.
+    unhideIndex                                Unhides an existing index from the query planner.
+
+web21> db.user.drop()
+true
+web21> show collections
+students
+web21> db.students.find()
+[ { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' } ]
+web21> db.students.insertMany([{name:"abc"},{name:"xyz"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("63197de48e070bbe5098994d"),
+    '1': ObjectId("63197de48e070bbe5098994e")
+  }
+}
+web21> db.insertOne({company:"masai"})
+TypeError: db.insertOne is not a function
+web21> db.students.insertOne({company:"masai"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63197e238e070bbe5098994f")
+}
+web21> db.students.find()
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  { _id: ObjectId("63197de48e070bbe5098994e"), name: 'xyz' },
+  { _id: ObjectId("63197e238e070bbe5098994f"), company: 'masai' }
+]
+web21> db.students.insertOne({name:Sayan})
+ReferenceError: Sayan is not defined
+web21> db.students.insertOne({name:"Sayan"})
+{
+  acknowledged: true,
+  insertedId: ObjectId("63197ec58e070bbe50989950")
+}
+web21> db.students.find()
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  { _id: ObjectId("63197de48e070bbe5098994e"), name: 'xyz' },
+  { _id: ObjectId("63197e238e070bbe5098994f"), company: 'masai' },
+  { _id: ObjectId("63197ec58e070bbe50989950"), name: 'Sayan' }
+]
+web21> db.students.find({name:"Sayan"})
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197ec58e070bbe50989950"), name: 'Sayan' }
+]
+web21> db.students.find({name:"xyz"})
+[ { _id: ObjectId("63197de48e070bbe5098994e"), name: 'xyz' } ]
+web21> db.students.findone({name:"Sayan"})
+TypeError: db.students.findone is not a function
+web21> db.students.findOne({name:"Sayan"})
+{ _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' }
+web21> db.students.updateOne({company:"masai"},{city:"Bangalore"})
+MongoInvalidArgumentError: Update document requires atomic operators
+web21> tdb.students.updateOne({company:"masai}.{$set:{city:"Bangalore"}})
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:53)
+
+> 1 | tdb.students.updateOne({company:"masai}.{$set:{city:"Bangalore"}})
+    |                                                      ^
+  2 |
+
+web21> db.students.updateOne({company:"masai",{$set:{city:"Bangalore"}})
+Uncaught:
+SyntaxError: Unexpected token (1:39)
+
+> 1 | db.students.updateOne({company:"masai",{$set:{city:"Bangalore"}})
+    |                                        ^
+  2 |
+
+web21> db.students.upadteOne({company:"masai"},{$set:{city:"Bangalore"}})
+TypeError: db.students.upadteOne is not a function
+web21> db.students.find()
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  { _id: ObjectId("63197de48e070bbe5098994e"), name: 'xyz' },
+  { _id: ObjectId("63197e238e070bbe5098994f"), company: 'masai' },
+  { _id: ObjectId("63197ec58e070bbe50989950"), name: 'Sayan' }
+]
+web21> db.students.updateOne({company:"masai"},{$set:{city:"Bangalore"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+web21> db.students.updateOne({company:"masai"},{$set:{company:"Masai"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+web21> db.students.find()
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  { _id: ObjectId("63197de48e070bbe5098994e"), name: 'xyz' },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Bangalore'
+  },
+  { _id: ObjectId("63197ec58e070bbe50989950"), name: 'Sayan' }
+]
+web21> db.students.find().pretty()
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  { _id: ObjectId("63197de48e070bbe5098994e"), name: 'xyz' },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Bangalore'
+  },
+  { _id: ObjectId("63197ec58e070bbe50989950"), name: 'Sayan' }
+]
+web21> db.students.deleteOne({name:"xyz"})
+{ acknowledged: true, deletedCount: 1 }
+web21> db.students.find()
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Bangalore'
+  },
+  { _id: ObjectId("63197ec58e070bbe50989950"), name: 'Sayan' }
+]
+web21> db.students.deleteOne({"_id":ObjectId("63197ec58e070bbe50989950")})
+{ acknowledged: true, deletedCount: 1 }
+web21> db.students.find()
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Bangalore'
+  }
+]
+web21> db.students.insertMany([{name:"Albert"},{name:"Aman"},{name:"Venu"}]
+...
+...
+web21> )db.students.insertMany([{name:"Albert"},{name:"Aman"},{name:"Venu"}])
+Uncaught:
+SyntaxError: Unexpected token (1:0)
+
+> 1 | )db.students.insertMany([{name:"Albert"},{name:"Aman"},{name:"Venu"}])
+    | ^
+  2 |
+
+web21> db.students.insertMany([{name:"Albert"},{name:"Aman"},{name:"Venu"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("631989cb8e070bbe50989951"),
+    '1': ObjectId("631989cb8e070bbe50989952"),
+    '2': ObjectId("631989cb8e070bbe50989953")
+  }
+}
+web21> db.students.find()
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Bangalore'
+  },
+  { _id: ObjectId("631989cb8e070bbe50989951"), name: 'Albert' },
+  { _id: ObjectId("631989cb8e070bbe50989952"), name: 'Aman' },
+  { _id: ObjectId("631989cb8e070bbe50989953"), name: 'Venu' }
+]
+web21> db.students.find().skip(3)
+[
+  { _id: ObjectId("631989cb8e070bbe50989951"), name: 'Albert' },
+  { _id: ObjectId("631989cb8e070bbe50989952"), name: 'Aman' },
+  { _id: ObjectId("631989cb8e070bbe50989953"), name: 'Venu' }
+]
+web21> db.students.find().limit(2)
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' }
+]
+web21> sb.students.find().pretty()
+ReferenceError: sb is not defined
+web21> db.students.find().pretty()
+[
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Bangalore'
+  },
+  { _id: ObjectId("631989cb8e070bbe50989951"), name: 'Albert' },
+  { _id: ObjectId("631989cb8e070bbe50989952"), name: 'Aman' },
+  { _id: ObjectId("631989cb8e070bbe50989953"), name: 'Venu' }
+]
+web21> db.students.find().sorrt({name:1})
+TypeError: db.students.find().sorrt is not a function
+web21> db.students.find().sort({name:1})
+[
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Bangalore'
+  },
+  { _id: ObjectId("631989cb8e070bbe50989951"), name: 'Albert' },
+  { _id: ObjectId("631989cb8e070bbe50989952"), name: 'Aman' },
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("631989cb8e070bbe50989953"), name: 'Venu' },
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' }
+]
+web21> db.students.find().sort({name:-1})
+[
+  { _id: ObjectId("63197de48e070bbe5098994d"), name: 'abc' },
+  { _id: ObjectId("631989cb8e070bbe50989953"), name: 'Venu' },
+  { _id: ObjectId("63197ab48e070bbe5098994b"), name: 'Sayan' },
+  { _id: ObjectId("631989cb8e070bbe50989952"), name: 'Aman' },
+  { _id: ObjectId("631989cb8e070bbe50989951"), name: 'Albert' },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Bangalore'
+  }
+]
+web21> db.students.updateMany({},{$set:{city:"Pune"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 6,
+  modifiedCount: 6,
+  upsertedCount: 0
+}
+web21> db.students.updateMany({name:"Albert"},{$set:{city:"Bangalore"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+web21> db.students.find()
+[
+  {
+    _id: ObjectId("63197ab48e070bbe5098994b"),
+    name: 'Sayan',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197de48e070bbe5098994d"),
+    name: 'abc',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989951"),
+    name: 'Albert',
+    city: 'Bangalore'
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989952"),
+    name: 'Aman',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989953"),
+    name: 'Venu',
+    city: 'Pune'
+  }
+]
+web21> db.students.find({$or :[{age:23},{city:"Pune"}]
+...
+web21> db.students.find({$or :[{age:23},{city:"Pune"}])
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:47)
+
+> 1 | db.students.find({$or :[{age:23},{city:"Pune"}])
+    |                                                ^
+  2 |
+
+web21> db.students.find({$or :[{age:23},{city:"Pune"}]})
+[
+  {
+    _id: ObjectId("63197ab48e070bbe5098994b"),
+    name: 'Sayan',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197de48e070bbe5098994d"),
+    name: 'abc',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989952"),
+    name: 'Aman',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989953"),
+    name: 'Venu',
+    city: 'Pune'
+  }
+]
+web21> db.students.updateMany({name:"Albert"},{$set:{age:38}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+web21> db.students.updateOne({name:"Venu"},{$set:{agee:35}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+web21> db.students.updateOne({name:"Albert"},{$set:{age:40}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+web21> db.students.updateOne({name:"Aman"},{$set:{age:37}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+web21> db.students.find().pretty()
+[
+  {
+    _id: ObjectId("63197ab48e070bbe5098994b"),
+    name: 'Sayan',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197de48e070bbe5098994d"),
+    name: 'abc',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989951"),
+    name: 'Albert',
+    city: 'Bangalore',
+    age: 40
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989952"),
+    name: 'Aman',
+    city: 'Pune',
+    age: 37
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989953"),
+    name: 'Venu',
+    city: 'Pune',
+    agee: 35
+  }
+]
+web21> db.students.find({$gt:30}).pretty()
+MongoServerError: unknown top level operator: $gt. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.
+web21> db.students.find(age:{$gt:30}).pretty()
+Uncaught:
+SyntaxError: Unexpected token, expected "," (1:20)
+
+> 1 | db.students.find(age:{$gt:30}).pretty()
+    |                     ^
+  2 |
+
+web21> db.students.find({$gte:30}).pretty()
+MongoServerError: unknown top level operator: $gte. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.
+web21> db.students.find({age:{$gte:30}}).pretty()
+[
+  {
+    _id: ObjectId("631989cb8e070bbe50989951"),
+    name: 'Albert',
+    city: 'Bangalore',
+    age: 40
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989952"),
+    name: 'Aman',
+    city: 'Pune',
+    age: 37
+  }
+]
+web21> db.students.find({city:"Pune",age:{$gte:30}}).pretty()
+[
+  {
+    _id: ObjectId("631989cb8e070bbe50989952"),
+    name: 'Aman',
+    city: 'Pune',
+    age: 37
+  }
+]
+web21> db.students.find().pretty()
+[
+  {
+    _id: ObjectId("63197ab48e070bbe5098994b"),
+    name: 'Sayan',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197de48e070bbe5098994d"),
+    name: 'abc',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989951"),
+    name: 'Albert',
+    city: 'Bangalore',
+    age: 40
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989952"),
+    name: 'Aman',
+    city: 'Pune',
+    age: 37
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989953"),
+    name: 'Venu',
+    city: 'Pune',
+    agee: 35
+  }
+]
+web21> db.students.updateMany({city:"Bangalore"},{$set:{state:"ka"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+web21> db.students.find({city:"BLR"}).pretty()
+
+web21> db.students.find({city:"BLR"}).pretty()
+
+web21> db.students.find({city:"Bangalore"}).pretty()
+[
+  {
+    _id: ObjectId("631989cb8e070bbe50989951"),
+    name: 'Albert',
+    city: 'Bangalore',
+    age: 40,
+    state: 'ka'
+  }
+]
+web21> db.setudents.updateMany({city:"Bangalore"}.{$set:{state:""}})
+Uncaught:
+SyntaxError: Unexpected token (1:43)
+
+> 1 | db.setudents.updateMany({city:"Bangalore"}.{$set:{state:""}})
+    |                                            ^
+  2 |
+
+web21> db.setudents.updateMany({city:"Bangalore"},{$set:{state:""}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 0,
+  modifiedCount: 0,
+  upsertedCount: 0
+}
+web21> db.students.find().pretty()
+[
+  {
+    _id: ObjectId("63197ab48e070bbe5098994b"),
+    name: 'Sayan',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197de48e070bbe5098994d"),
+    name: 'abc',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("63197e238e070bbe5098994f"),
+    company: 'Masai',
+    city: 'Pune'
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989951"),
+    name: 'Albert',
+    city: 'Bangalore',
+    age: 40,
+    state: 'ka'
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989952"),
+    name: 'Aman',
+    city: 'Pune',
+    age: 37
+  },
+  {
+    _id: ObjectId("631989cb8e070bbe50989953"),
+    name: 'Venu',
+    city: 'Pune',
+    agee: 35
+  }
+]
+web21>
