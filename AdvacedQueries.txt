@@ -1,0 +1,11 @@
+region asia=> db.countries.find({region:"Asia"})
+
+currency EURO=> db.countries.find({currency:"EUR"})
+
+countries whose timezone's gmtOffset is 3600=>db.countries.find({"timezones":{$elemMatch:{"gmtOffset":3600}}})
+
+countries whose timezone's gmtOffset is 3600 AND timezone name is Central European Time=> db.countries.find({"timezones":{$elemMatch:{"gmtOffset":3600,"tzName": "Central European Time"}}})
+
+countries with more than 1 time zone=>db.countries.find({"timezones.1":{$exists:true}})
+
+countries with "Korean" translation=>db.countries.find({"translations.kr":{$exists:true}})
